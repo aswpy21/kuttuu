@@ -8,6 +8,7 @@
 </head>
 <body>
 
+    <!-- The Surprise Overlay Screen -->
     <div id="surprise-overlay" class="overlay">
         <div class="overlay-card">
             <div class="gift-icon">🎁</div>
@@ -17,26 +18,33 @@
         </div>
     </div>
 
+    <!-- Hidden Background Audio -->
     <audio id="bg-music" src="music.mp3" loop></audio>
 
+    <!-- The Main Content -->
     <main id="main-content" class="container blurred">
         <section class="hero-section">
             <h1 class="fade-in">Happy Birthday, <span class="gradient-text">Name</span></h1>
             <p class="subtitle fade-in-delayed">Wipe the snow below to reveal your message...</p>
         </section>
 
-        <section class="snow-card-container slide-up">
-            <div class="secret-text-layer">
-                <h2>To Someone Special,</h2>
-                <p class="letter-text">
-                    Happy Birthday! Thank you for always bringing so much energy and joy into my life. 
-                    Here's to all the inside jokes, chaotic late-night conversations, and making many 
-                    more unforgettable memories together. Have an incredible day! 🎉
-                </p>
-            </div>
-            
-            <canvas id="snow-canvas"></canvas>
-        </section>
+        <!-- Centered Snow Card Container -->
+        <div class="snow-card-wrapper slide-up">
+            <section class="snow-card-container">
+                <!-- Hidden Message underneath -->
+                <div class="secret-text-layer">
+                    <h2>To Someone Special,</h2>
+                    <p class="letter-text">
+                        Happy Birthday! Thank you for always bringing so much energy and joy into my life. 
+                        Here's to all the inside jokes, chaotic late-night conversations, and making many 
+                        more unforgettable memories together. Have an incredible day! 🎉
+                    </p>
+                </div>
+                
+                <!-- The Snow Canvas Layer on top -->
+                <canvas id="snow-canvas"></canvas>
+            </section>
+        </div>
         
         <footer class="footer fade-in-delayed">
             <p>Made with 🤍</p>
