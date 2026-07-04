@@ -17,10 +17,23 @@ body {
     position: relative;
 }
 
+/* Frosty Vignette Border Overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, transparent 60%, rgba(255, 255, 255, 0.15) 100%);
+    pointer-events: none;
+    z-index: 70; /* Sits right over the snow to give it realistic lighting */
+}
+
 /* Blur & Overlay System */
 .blurred {
-    filter: blur(10px);
-    transition: filter 2s ease;
+    filter: blur(15px);
+    transition: filter 2.5s ease;
 }
 
 .overlay {
@@ -66,18 +79,18 @@ body {
     box-shadow: 0 4px 20px rgba(161, 196, 253, 0.4);
 }
 
-/* Underlying Main Layout */
+/* Underlying Main Layout - The Photo Container */
 .container {
-    max-width: 500px;
-    width: 90%;
+    max-width: 450px;
+    width: 85%;
     text-align: center;
     z-index: 10;
-    pointer-events: none; /* Allows drawing through the text layers */
+    pointer-events: none; 
     user-select: none;
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
 }
@@ -90,13 +103,13 @@ h1 {
     animation: gradientFlow 6s ease infinite;
 }
 
-/* Beautiful Image Container hidden under snow */
+/* Image Container hidden completely under full screen snow */
 .reveal-wrapper {
     width: 100%;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .revealed-img {
@@ -112,7 +125,7 @@ h1 {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 50; /* Sits completely over the main content */
+    z-index: 50;
     touch-action: none;
 }
 
@@ -124,25 +137,25 @@ h1 {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 60; /* Falls on top of the carved paths too */
+    z-index: 60;
 }
 
 .snowflake {
     position: absolute;
     top: -10px;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.2rem;
     opacity: 0.8;
     animation: fall linear infinite;
 }
 
 .footer {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     color: #52525b;
     font-size: 0.9rem;
 }
 
-/* Keyframes */
+/* Keyframes animations */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -156,7 +169,7 @@ h1 {
 
 @keyframes fall {
     0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
-    100% { transform: translateY(105vh) translateX(50px) rotate(360deg); opacity: 0; }
+    10% { opacity: 0.9; }
+    90% { opacity: 0.9; }
+    100% { transform: translateY(105vh) translateX(60px) rotate(360deg); opacity: 0; }
 }
