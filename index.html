@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="surprise-overlay" class="overlay">
+        <div class="overlay-card">
+            <div class="gift-icon">🎁</div>
+            <h2>You have a secret message!</h2>
+            <p>Open the surprise, then wipe the snow away with your finger to read it.</p>
+            <button id="open-btn" class="cta-button">Open Surprise ✨</button>
+        </div>
+    </div>
+
+    <audio id="bg-music" src="music.mp3" loop></audio>
+
+    <main id="main-content" class="container blurred">
+        <section class="hero-section">
+            <h1 class="fade-in">Happy Birthday, <span class="gradient-text">Name</span></h1>
+            <p class="subtitle fade-in-delayed">Wipe the snow below to reveal your message...</p>
+        </section>
+
+        <section class="snow-card-container slide-up">
+            <div class="secret-text-layer">
+                <h2>To Someone Special,</h2>
+                <p class="letter-text">
+                    Happy Birthday! Thank you for always bringing so much energy and joy into my life. 
+                    Here's to all the inside jokes, chaotic late-night conversations, and making many 
+                    more unforgettable memories together. Have an incredible day! 🎉
+                </p>
+            </div>
+            
+            <canvas id="snow-canvas"></canvas>
+        </section>
+        
+        <footer class="footer fade-in-delayed">
+            <p>Made with 🤍</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

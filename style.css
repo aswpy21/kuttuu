@@ -1,0 +1,44 @@
+/* Keep all your previous global body, overlay, and text styling unchanged */
+
+/* Snow Card Container Setup */
+.snow-card-container {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    min-height: 280px;
+    background: #121215;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* The underlying birthday message text */
+.secret-text-layer {
+    padding: 2.5rem;
+    text-align: left;
+    user-select: none; /* Prevents text selection while carving snow */
+}
+
+.secret-text-layer h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ff758c;
+}
+
+.letter-text {
+    line-height: 1.7;
+    color: #d4d4d8;
+    font-size: 1.1rem;
+}
+
+/* The Snow Layer Sitting Right On Top */
+#snow-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill:white"><circle cx="12" cy="12" r="10"/></svg>'), auto;
+    touch-action: none; /* Crucial for smooth single-finger tracking on phones */
+}
