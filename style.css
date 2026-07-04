@@ -1,27 +1,134 @@
-/* Keep all your previous global body, overlay, and text styling unchanged */
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-/* Snow Card Container Setup */
+body {
+    background-color: #0b0b0d;
+    color: #e4e4e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+    overflow-x: hidden;
+}
+
+/* Blur & Overlay System */
+.blurred {
+    filter: blur(20px);
+    pointer-events: none;
+    transition: filter 1.5s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 11, 13, 0.95);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.overlay-card {
+    background: #121215;
+    border: 1px solid #27272a;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    max-width: 400px;
+    width: 90%;
+}
+
+.gift-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 117, 140, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.03);
+}
+
+/* Main Layout */
+.container {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section {
+    margin-bottom: 2.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3, #96e6a1, #d4fc79);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s ease infinite;
+}
+
+.subtitle {
+    color: #a1a1aa;
+    font-size: 1.05rem;
+}
+
+/* Centered Wrapper */
+.snow-card-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* The Fixed Card Layout */
 .snow-card-container {
     position: relative;
-    max-width: 650px;
-    margin: 0 auto;
-    min-height: 280px;
+    width: 100%;
+    max-width: 600px;
     background: #121215;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
-/* The underlying birthday message text */
 .secret-text-layer {
-    padding: 2.5rem;
+    padding: 3rem 2.5rem;
     text-align: left;
-    user-select: none; /* Prevents text selection while carving snow */
 }
 
 .secret-text-layer h2 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #ff758c;
 }
@@ -29,16 +136,47 @@
 .letter-text {
     line-height: 1.7;
     color: #d4d4d8;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
-/* The Snow Layer Sitting Right On Top */
+/* The Fixed Overlapping Snow Canvas */
 #snow-canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill:white"><circle cx="12" cy="12" r="10"/></svg>'), auto;
-    touch-action: none; /* Crucial for smooth single-finger tracking on phones */
+    touch-action: none;
+}
+
+.footer {
+    margin-top: 2.5rem;
+    color: #52525b;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.fade-in { animation: fadeInSmooth 1.2s ease forwards; }
+.fade-in-delayed { opacity: 0; animation: fadeInSmooth 1.2s ease 0.4s forwards; }
+.slide-up { opacity: 0; animation: slideUpSmooth 1.4s cubic-bezier(0.1, 0.8, 0.25, 1) 0.2s forwards; }
+
+@keyframes fadeInSmooth {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpSmooth {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
