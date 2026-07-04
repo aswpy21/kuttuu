@@ -13,7 +13,7 @@
         <div class="overlay-card">
             <div class="gift-icon">🎁</div>
             <h2>You have a secret message!</h2>
-            <p>Open the surprise, then wipe the snow away with your finger to read it.</p>
+            <p>Open the surprise, then wipe the snow away with your finger to reveal it.</p>
             <button id="open-btn" class="cta-button">Open Surprise ✨</button>
         </div>
     </div>
@@ -21,27 +21,39 @@
     <!-- Hidden Background Audio -->
     <audio id="bg-music" src="music.mp3" loop></audio>
 
+    <!-- High-performance canvas for touch particle trails (Unchanged) -->
+    <canvas id="trail-canvas"></canvas>
+    
+    <!-- Environment container for global floating background items -->
+    <div id="animation-env"></div>
+
     <!-- The Main Content -->
     <main id="main-content" class="container blurred">
         <section class="hero-section">
             <h1 class="fade-in">Happy Birthday, <span class="gradient-text">Name</span></h1>
-            <p class="subtitle fade-in-delayed">Wipe the snow below to reveal your message...</p>
+            <p class="subtitle fade-in-delayed">Wipe the snow below to reveal the memory...</p>
         </section>
 
-        <!-- Centered Snow Card Container -->
+        <!-- Centered Snow Card Wrapper -->
         <div class="snow-card-wrapper slide-up">
             <section class="snow-card-container">
-                <!-- Hidden Message underneath -->
+                
+                <!-- Hidden Content Layer: Photo + Text Split -->
                 <div class="secret-text-layer">
-                    <h2>To Someone Special,</h2>
-                    <p class="letter-text">
-                        Happy Birthday! Thank you for always bringing so much energy and joy into my life. 
-                        Here's to all the inside jokes, chaotic late-night conversations, and making many 
-                        more unforgettable memories together. Have an incredible day! 🎉
-                    </p>
+                    <div class="image-container">
+                        <img src="20260623_145849.jpg" alt="Favorite Memory" class="profile-img">
+                    </div>
+                    <div class="text-container">
+                        <h2>To Someone Special,</h2>
+                        <p class="letter-text">
+                            Happy Birthday! Thank you for always bringing so much energy and joy into my life. 
+                            Here's to all the inside jokes, chaotic late-night conversations, and making many 
+                            more unforgettable memories together. Have an incredible day! 🎉
+                        </p>
+                    </div>
                 </div>
                 
-                <!-- The Snow Canvas Layer on top -->
+                <!-- The Snow Canvas Layer covering the entire grid -->
                 <canvas id="snow-canvas"></canvas>
             </section>
         </div>
