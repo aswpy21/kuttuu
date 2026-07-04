@@ -13,16 +13,14 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 1.5rem;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
 }
 
 /* Blur & Overlay System */
 .blurred {
-    filter: blur(20px);
-    pointer-events: none;
-    transition: filter 1.5s ease;
+    filter: blur(10px);
+    transition: filter 2s ease;
 }
 
 .overlay {
@@ -31,8 +29,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(11, 11, 13, 0.95);
-    backdrop-filter: blur(12px);
+    background: #0b0b0d;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,139 +55,89 @@ body {
 }
 
 .cta-button {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: #fff;
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    color: #1e293b;
     border: none;
     padding: 0.9rem 2.5rem;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(255, 117, 140, 0.4);
+    box-shadow: 0 4px 20px rgba(161, 196, 253, 0.4);
 }
 
-/* Background Sparkle Canvas Layout */
-#trail-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 90;
-}
-
-#animation-env {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 85;
-}
-
-/* Main Container Layout */
+/* Underlying Main Layout */
 .container {
-    max-width: 850px;
-    width: 100%;
+    max-width: 500px;
+    width: 90%;
     text-align: center;
-}
-
-.hero-section {
-    margin-bottom: 2.5rem;
+    z-index: 10;
+    pointer-events: none; /* Allows drawing through the text layers */
+    user-select: none;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .gradient-text {
-    background: linear-gradient(45deg, #ff758c, #ff7eb3, #96e6a1, #d4fc79);
-    background-size: 300% 300%;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3, #a1c4fd, #c2e9fb);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientFlow 6s ease infinite;
 }
 
-.subtitle {
-    color: #a1a1aa;
-    font-size: 1.05rem;
-}
-
-.snow-card-wrapper {
-    display: flex;
-    justify-content: center;
+/* Beautiful Image Container hidden under snow */
+.reveal-wrapper {
     width: 100%;
-}
-
-/* The Unified Card Sizing */
-.snow-card-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    background: #121215;
-    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Grid Layout For Inside Content */
-.secret-text-layer {
-    padding: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 2.5rem;
-    align-items: center;
-    text-align: left;
-}
-
-.image-container {
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.profile-img {
+.revealed-img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.text-container h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #ff758c;
-}
-
-.letter-text {
-    line-height: 1.7;
-    color: #d4d4d8;
-    font-size: 1.05rem;
-}
-
-/* The Covering Snow Overlay Layer */
+/* The Full-Screen Snow Canvas */
 #snow-canvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50; /* Sits completely over the main content */
     touch-action: none;
-    z-index: 2;
 }
 
-.floating-element {
+/* Gentle Blizzard Environment */
+#blizzard-env {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 60; /* Falls on top of the carved paths too */
+}
+
+.snowflake {
     position: absolute;
-    bottom: -50px;
-    animation: floatUp 7s linear infinite;
+    top: -10px;
+    color: #fff;
+    font-size: 1rem;
+    opacity: 0.8;
+    animation: fall linear infinite;
 }
 
 .footer {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     color: #52525b;
     font-size: 0.9rem;
 }
@@ -207,33 +154,9 @@ h1 {
     100% { background-position: 0% 50%; }
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
-    15% { opacity: 0.8; }
-    85% { opacity: 0.8; }
-    100% { transform: translateY(-115vh) rotate(360deg) scale(1.2); opacity: 0; }
-}
-
-.fade-in { animation: fadeInSmooth 1.2s ease forwards; }
-.fade-in-delayed { opacity: 0; animation: fadeInSmooth 1.2s ease 0.4s forwards; }
-.slide-up { opacity: 0; animation: slideUpSmooth 1.4s cubic-bezier(0.1, 0.8, 0.25, 1) 0.2s forwards; }
-
-@keyframes fadeInSmooth {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUpSmooth {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Mobile Responsiveness View */
-@media (max-width: 680px) {
-    .secret-text-layer {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem;
-    }
-    h1 { font-size: 2.2rem; }
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(105vh) translateX(50px) rotate(360deg); opacity: 0; }
 }
